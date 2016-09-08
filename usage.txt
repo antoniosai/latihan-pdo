@@ -1,0 +1,63 @@
+// 1. Insert Data into Database
+
+$table = 'tablename';
+
+$data = [
+	'column1' => 'value1',
+	'column2' => 'value2'
+];
+
+$this->create($table, $data)
+
+// 2. Update Existing Data on Database
+
+$table 'tablename';
+
+$data = [
+	'column1' => 'value1',
+	'column2' => 'value2'
+];
+
+$where = [
+	'column1' => 'value1',
+	'column2' => 'value2'
+];
+
+$this->update($table, $data, $where)
+
+// 3. Delete existing data from Database
+
+$table = 'tablename';
+$where = [
+	'column1' => 'value1',
+	'column2' => 'value2'
+];
+$this->delete($table, $where)
+
+// 4. Read data from Database by Selected table and where condition
+
+$table = 'tablename';
+$where = [
+	'column1' => 'value1',
+	'column2' => 'value2'
+];
+
+$this->read($table, $where);
+
+// 5. Find existed data from Database
+
+$table = 'tablename';
+$data = [
+	'column1' => 'value1',
+	'column2' => 'value2'
+];
+
+$this->find($table, $data);
+
+//5.1 additional collection,
+
+$result = $this->find($table, $data);
+$result->getId(); //Will returned a string
+$result->all(); //Will returned an object of data
+$result->first(); //Will returned an object of first data on it's table.
+$result->delete(); //Will deleted the data from the selected data.
