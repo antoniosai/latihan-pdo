@@ -1,12 +1,11 @@
 <?php
 
-include 'class/database.php';
+include 'library/connection.php';
 
-$database = new Database();
+$table = 'genre';
 
-$table = 'sutradara';
 $where = [
-	'nama_sutradara' => 'Antonio Saiful Islam'
+	'nama_genre' => 'Kids'
 ];
 
 $database->delete($table, $where);

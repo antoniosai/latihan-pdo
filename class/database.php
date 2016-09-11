@@ -1,14 +1,16 @@
 <?php 
 
-include('result.php');
+include('result.php'); //Memuat file class/result.php
 
 class Database {
 
-	private $statement;
+	private $statement; //Variabel untuk menampung kode Statement / Value yang akan diproses oleh fungsi-fungsi tertentu
 
-	private $handler;
-	private $error;
+	private $handler; //Variabel untuk menghandle Database
+	private $error; //Variabel untuk menampung error
 
+
+	//Fungsi untuk melakukan koneksi ke Database Server
 	public function __construct($credentials){
 
 		$connection = 'mysql:host=' . $credentials['hostname'] . ';dbname=' . $credentials['database'];
@@ -24,6 +26,7 @@ class Database {
 		}
 	}
 
+	//Fungsi untuk melakukan pembuatan data pada table dalam database
 	public function create($table, $data)
 	{
 		$keys = array_keys($data);
@@ -47,6 +50,7 @@ class Database {
 		return $this->execute();
 	}
 
+	//Fungsi untuk melakukan Query SQL 
 	public function query($sql)
 	{
 		$this->prepareStatement($sql);
@@ -58,6 +62,7 @@ class Database {
 		return new Result($data);
 	}
 
+	//Fungsi untuk melakukan Update data yang sudah ada didalam table
 	public function update($table, $data, $where)
 	{
 		$keys = array_keys($data);
@@ -90,6 +95,7 @@ class Database {
 		return $this->execute();
 	}
 
+	//Fungsi untuk menghapus data yg sudah ada pada table dalam database
 	public function delete($table, $where)
 	{
 
@@ -111,11 +117,12 @@ class Database {
 		return $this->execute();
 	}
 
-
+	//Fungsi untuk menampung perintah SQL
 	private function prepareStatement($query){
 		$this->statement = $this->handler->prepare($query);
 	}
 
+	//Fungsi untuk menampung inputan yang akan diproses pada fungsi yang membutuhkan
 	public function bind($param, $value, $type = null){
 		if (is_null($type)) {
 			switch (true) {
@@ -135,6 +142,7 @@ class Database {
 		$this->statement->bindValue($param, $value, $type);
 	}
 
+	//Fungsi untuk melakukan eksekusi statement yang telah disiapkan
 	public function execute(){
 	    return $this->statement->execute();
 	}

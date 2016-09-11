@@ -1,17 +1,17 @@
 <?php 
 
-include ('class/database.php');
+//Memanggil file connection.php
+include ('library/connection.php');
 
-$database = new Database();
+//Nama tabel pada database movies
+$table = 'genre';
 
-$table = 'sutradara';
-
+// Data baru yang akan menggantikan data yang lama
 $data = [
-	'nama_sutradara' => 'Hanung'
+	'nama_genre' => 'Kids'
 ];
-
 $where = [
-	'id' => 24
+	'id' => 23
 ];
 
 $database->update($table, $data, $where);

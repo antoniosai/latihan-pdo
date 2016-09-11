@@ -2,12 +2,10 @@
 
 include 'library/connection.php';
 
-$table = 'film';
+$table = 'genre';
 
 $data = [
-	'judul_film' => 'Film Horror',
-	'sutradara_id' => 25,
-	'genre_id' => 24
+	'nama_genre' => 'Horror',
 ];
 
 $database->create($table, $data);
